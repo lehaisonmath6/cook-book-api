@@ -1,0 +1,1 @@
+swag i -g routers/routers.go -dir ./ --instanceName v1 --parseDependency true

@@ -1,0 +1,88 @@
+basePath: /v1/cook-books-api
+definitions:
+  models.Author:
+    properties:
+      avatar:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.Category:
+    properties:
+      name:
+        type: string
+      path:
+        type: string
+      total_lectures:
+        type: integer
+    type: object
+  models.Lecture:
+    properties:
+      author:
+        $ref: '#/definitions/models.Author'
+      category:
+        $ref: '#/definitions/models.Category'
+      create_time:
+        type: integer
+      document_url:
+        type: string
+      id:
+        type: integer
+      intro:
+        type: string
+      thumb_url:
+        type: string
+      title:
+        type: string
+      totalViews:
+        type: integer
+      video_url:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a Cook books
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Cook-Books
+  version: "1.0"
+paths:
+  /lecture/create:
+    post:
+      consumes:
+      - application/json
+      description: tạo mới bài giảng
+      parameters:
+      - description: session key
+        in: header
+        name: session
+        required: true
+        type: string
+      - description: int64
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Lecture'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Lecture'
+        "403":
+          description: Forbidden
+          schema:
+            type: pubKey
+      summary: tạo mới bài giảng
+      tags:
+      - lecture
+swagger: "2.0"
